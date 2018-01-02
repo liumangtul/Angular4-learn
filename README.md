@@ -9,12 +9,12 @@
 ### 1、模块-module
     将应用中的不同部分组织成一个单元（包括组件，服务，指令等）
 ### 2、组件-component
-* 组件是最基本的构建块，可以把一个组件理解为一段带有业务逻辑和数据的html
+* 组件是Angular应用最基本的构建块，可以把一个组件理解为一段带有业务逻辑和数据的html
 * 组件可以有父子关系
-* 组件可以调用服务（service）：服务是用来封装可重复使用的业务逻辑，比如获取商品信息的逻辑
+* 组件可以调用服务（service）：service是用来封装可重复使用的业务逻辑，比如获取商品信息的逻辑
 * 组件可以调服务（service），服务（service）也可以调服务（service）
 ### 3、指令-directive
-* 允许你向html元素添加自定义行为
+* 允许你向html元素添加自定义行为,比如自动完成的指令.
 
 #### 总结
 组件，服务，模块是用来完成功能的
@@ -44,6 +44,14 @@ app -- 不多说了，基本代码都是放在这里的
 assets --存放静态资源的，例如image
 environments —环境配置，配置生产环境，开发环境等
 
+index.html 你懂的
+main.ts 入口文件
+polyfills.ts 兼容补丁
+style.css 应用的全局的样式
+test.ts 测试
+tsconfig
+...
+
 组件介绍：
 
 #### 1、@Component ---组件元数据装饰器 简称装饰器
@@ -51,7 +59,7 @@ environments —环境配置，配置生产环境，开发环境等
 装饰器包含多个属性，这些属性的值叫做元数据
 angular会根据元数据的值来渲染组件，执行组件的逻辑
 #### 2、template—模版
-    定义组件的外观-htm形式
+    定义组件的外观-htm形式 绑定数据
 #### 3、Controller—控制器
 普通的typescript类
 被@Component装饰器装饰
@@ -60,6 +68,7 @@ angular会根据元数据的值来渲染组件，执行组件的逻辑
 template 模版展现控制器controller的数据
 controller控制器处理模版module上发生的事件
 
+以上3个是组件的必备要素
 
     ```
     import { Component } from '@angular/core';
@@ -81,3 +90,41 @@ controller控制器处理模版module上发生的事件
 
   AppComponent 控制器
 
+app.component.html
+```
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+```
+
+
+输入属性 - @inputs（） ---传递数据
+输出属性 - @outputs（）---组件之间共享数据等
+providers---注入器
+依赖注入
+生命周期
+Lifecycle Hooks
+
+app.module.ts
+
+```
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+
+
+    import { AppComponent } from './app.component';
+
+
+    @NgModule({
+      declarations: [
+        AppComponent
+      ],
+      imports: [
+        BrowserModule
+      ],
+      providers: [],
+      bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+
+```
